@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+</head>
+<body>
+    <div id="header">
+        <div id="container">
+            <nav>
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div id="header-text">
+                <p>MCA Student</p><h1>Hi , I'm <span>Daivik Chauhan</span><br> from Noida</h1>
+
+                
+            </div>
+        </div>
+    </div>
+   <!-------------------------------about------------------------------->
+    <div id="about">
+        <div id="container">
+            <div id="row">
+                <div id="about-col1"><img src="newimg.avif"></div>
+                <div id="about-col2">
+                    <p><h1>About Me</h1></p>
+                
+                        <div class="tabtitles">
+                        <p class="tab-links active-links" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                    <div class= "tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Java</span></li>
+                            <li><span>SQL</span></li>
+                            <li><span>Frontend</span></li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>12th</span><br>Sapphire International School</li>
+                            <li><span>BCA</span><br>Graphic Era Deemed To Be University</li>
+                            <li><span>MCA</span><br>Amity University Noida</li>
+                        </ul>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------Projects----------------------------------->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="subtitle">My Work</h1>
+            <div class="work-list">
+                <div class="work"><img src="img1.webp">
+                <div class="layer">
+                    <h3>Portfolio Website</h3>
+                    <p>The Website contains all the Important Information about me</p>
+                </div>
+                </div>
+                <div class="work"><img src="img2.jpg">
+                    <div class="layer">
+                        <h3>Prediction Model</h3>
+                        <p>Prediction model build on the basis of KNN and Naive Bayes</p>
+                    </div></div>
+                <div class="work"><img src="img3.jpg"><div class="layer">
+                    <h3>MERN stack Webapp</h3>
+                    <p>A full stack dating web app build with the help of MERN stack</p>
+                </div></div>
+            </div>
+            <a href="#" class="btn">See more</a>
+        </div>
+    </div>
+<!------------------------------contact --------------------------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-regular fa-envelope"></i>contact@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>9560089800</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="NAME" placeholder="Your Name" required>
+                    <input type="text" name="EMAIL" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">SUBMIT</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script>
+        var tablinks=document.getElementsByClassName("tab-links");
+        var tabcontents=document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-links");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-links");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby4MXstcG7Xza2Q92GX-Mw1q1eedaAYw8sjgrHZlsid23uQR0PoSsktDoeYEwVAiqNDGg/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {msg.innerHTML="Successfull"
+                setTimeout(function(){
+                    msg.innerHTML=""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
